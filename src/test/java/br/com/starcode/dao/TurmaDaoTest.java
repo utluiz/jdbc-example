@@ -24,7 +24,7 @@ public class TurmaDaoTest {
 			Class.forName("org.h2.Driver");
 
 			JdbcDataSource ds = new JdbcDataSource();
-			ds.setUrl("jdbc:h2:mem:test");
+			ds.setUrl("jdbc:h2:mem:test;DB_CLOSE_DELAY=-1");
 			ds.setUser("sa");
 			ds.setPassword("sa");
 			

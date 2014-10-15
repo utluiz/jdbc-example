@@ -60,7 +60,8 @@ public class LoginDAO {
 			ps = con.prepareStatement(
 					"insert into login " +
 					"(email, nome, senha, ultimo_acesso) "+ 
-					"values (?, ?, ?, null)", Statement.RETURN_GENERATED_KEYS);
+					"values (?, ?, ?, null)", 
+					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, l.getEmail());
 			ps.setString(2, l.getNome());
 			ps.setString(3, l.getSenha());
@@ -82,81 +83,5 @@ public class LoginDAO {
 			}
 		}
 	}
-	/*
-	public void update(Login t) {
-		Connection con = null;
-		PreparedStatement ps = null;
-		try {
-			con = ds.getConnection();
-			ps = con.prepareStatement("update TB_TURMA set descricao = ?, inicio_aulas = ? where id = ?");
-			ps.setString(1, t.getDescricao());
-			ps.setDate(2, new java.sql.Date(t.getInicioAulas().getTime()));
-			ps.setInt(3, t.getId());
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
 	
-	public void delete(Integer id) {
-		Connection con = null;
-		PreparedStatement ps = null;
-		try {
-			con = ds.getConnection();
-			ps = con.prepareStatement("delete TB_TURMA where id = ?");
-			ps.setInt(1, id);
-			ps.executeUpdate();
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-	
-	public List<Login> list() {
-		Connection con = null;
-		Statement st = null;
-		List<Login> res = new ArrayList<Login>();
-		try {
-			con = ds.getConnection();
-			st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * from TB_TURMA");
-			while (rs.next()) {
-				Login t = new Login();
-				t.setId(rs.getInt("id"));
-				t.setDescricao(rs.getString("descricao"));
-				t.setInicioAulas(rs.getDate("inicio_aulas"));
-				res.add(t);
-			}
-			return res;
-		} catch (SQLException e) {
-			e.printStackTrace();
-			throw new RuntimeException(e);
-		} finally {
-			if (con != null) {
-				try {
-					con.close();
-				} catch (SQLException e) {
-					e.printStackTrace();
-				}
-			}
-		}
-	}
-	 */	
 }

@@ -57,7 +57,9 @@ public class TurmaDAO {
 		PreparedStatement ps = null;
 		try {
 			con = ds.getConnection();
-			ps = con.prepareStatement("insert into TB_TURMA (descricao, inicio_aulas) values (?, ?)");
+			ps = con.prepareStatement(
+					"insert into TB_TURMA (descricao, inicio_aulas) values (?, ?)",
+					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, t.getDescricao());
 			ps.setDate(2, new java.sql.Date(t.getInicioAulas().getTime()));
 			ps.executeUpdate();

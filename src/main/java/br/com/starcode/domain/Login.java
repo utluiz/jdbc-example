@@ -8,7 +8,7 @@ public class Login {
 	private String email;
 	private String nome;
 	private String senha;
-	private Date dateTime;
+	private Date ultimoAcesso;
 	private int tentativasLogin;
 	public int getCodigo() {
 		return codigo;
@@ -34,11 +34,11 @@ public class Login {
 	public void setSenha(String senha) {
 		this.senha = senha;
 	}
-	public Date getDateTime() {
-		return dateTime;
+	public Date getUltimoAcesso() {
+		return ultimoAcesso;
 	}
-	public void setDateTime(Date dateTime) {
-		this.dateTime = dateTime;
+	public void setUltimoAcesso(Date ultimoAcesso) {
+		this.ultimoAcesso = ultimoAcesso;
 	}
 	public int getTentativasLogin() {
 		return tentativasLogin;

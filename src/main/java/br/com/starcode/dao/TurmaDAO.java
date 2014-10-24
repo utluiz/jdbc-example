@@ -25,7 +25,8 @@ public class TurmaDAO {
 		PreparedStatement ps = null;
 		try {
 			con = ds.getConnection();
-			ps = con.prepareStatement("select * from TB_TURMA where id = ?");
+			ps = con.prepareStatement(
+					"select * from TB_TURMA where id = ?");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -58,7 +59,8 @@ public class TurmaDAO {
 		try {
 			con = ds.getConnection();
 			ps = con.prepareStatement(
-					"insert into TB_TURMA (descricao, inicio_aulas) values (?, ?)",
+					"insert into TB_TURMA (descricao, inicio_aulas) "
+					+ "values (?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
 			ps.setString(1, t.getDescricao());
 			ps.setDate(2, new java.sql.Date(t.getInicioAulas().getTime()));
@@ -86,7 +88,10 @@ public class TurmaDAO {
 		PreparedStatement ps = null;
 		try {
 			con = ds.getConnection();
-			ps = con.prepareStatement("update TB_TURMA set descricao = ?, inicio_aulas = ? where id = ?");
+			ps = con.prepareStatement(
+					"update TB_TURMA "
+					+ "set descricao = ?, inicio_aulas = ? "
+					+ "where id = ?");
 			ps.setString(1, t.getDescricao());
 			ps.setDate(2, new java.sql.Date(t.getInicioAulas().getTime()));
 			ps.setInt(3, t.getId());
@@ -110,7 +115,8 @@ public class TurmaDAO {
 		PreparedStatement ps = null;
 		try {
 			con = ds.getConnection();
-			ps = con.prepareStatement("delete TB_TURMA where id = ?");
+			ps = con.prepareStatement(
+					"delete TB_TURMA where id = ?");
 			ps.setInt(1, id);
 			ps.executeUpdate();
 		} catch (SQLException e) {
@@ -134,7 +140,8 @@ public class TurmaDAO {
 		try {
 			con = ds.getConnection();
 			st = con.createStatement();
-			ResultSet rs = st.executeQuery("select * from TB_TURMA");
+			ResultSet rs = st.executeQuery(
+					"select * from TB_TURMA");
 			while (rs.next()) {
 				Turma t = new Turma();
 				t.setId(rs.getInt("id"));

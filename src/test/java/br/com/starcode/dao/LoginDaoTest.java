@@ -28,6 +28,8 @@ public class LoginDaoTest {
 			//		"jdbc:mysql://localhost/login_test?"
 			//		+ "user=root&password=");
 			
+			//TODO DDL
+			
 			loginDAO = new LoginDAO(ds);
 			
 		} catch (Throwable e) {

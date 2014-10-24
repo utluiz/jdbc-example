@@ -23,7 +23,8 @@ public class LoginDAO {
 		PreparedStatement ps = null;
 		try {
 			con = ds.getConnection();
-			ps = con.prepareStatement("select * from login where codigo = ?");
+			ps = con.prepareStatement(
+					"select * from login where codigo = ?");
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
@@ -32,7 +33,7 @@ public class LoginDAO {
 				l.setEmail(rs.getString("email"));
 				l.setNome(rs.getString("nome"));
 				l.setSenha(rs.getString("senha"));
-				l.setDateTime(rs.getDate("ultimo_acesso"));
+				l.setUltimoAcesso(rs.getDate("ultimo_acesso"));
 				l.setTentativasLogin(rs.getInt("tentativas"));
 				return l;
 			} else {

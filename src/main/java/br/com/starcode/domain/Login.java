@@ -10,6 +10,7 @@ public class Login {
 	private String senha;
 	private Date ultimoAcesso;
 	private int tentativasLogin;
+	
 	public int getCodigo() {
 		return codigo;
 	}

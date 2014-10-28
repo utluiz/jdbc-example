@@ -12,11 +12,11 @@ import javax.sql.DataSource;
 
 import br.com.starcode.domain.Turma;
 
-public class TurmaDAO {
+public class TurmaDao {
 	
 	private DataSource ds;
 	
-	public TurmaDAO(DataSource ds) {
+	public TurmaDao(DataSource ds) {
 		this.ds = ds;
 	}
 	
@@ -30,11 +30,11 @@ public class TurmaDAO {
 			ps.setInt(1, id);
 			ResultSet rs = ps.executeQuery();
 			if (rs.next()) {
-				Turma t = new Turma();
-				t.setId(rs.getInt("id"));
-				t.setDescricao(rs.getString("descricao"));
-				t.setInicioAulas(rs.getDate("inicio_aulas"));
-				return t;
+				Turma turma = new Turma();
+				turma.setId(rs.getInt("id"));
+				turma.setDescricao(rs.getString("descricao"));
+				turma.setInicioAulas(rs.getDate("inicio_aulas"));
+				return turma;
 			} else {
 				return null;
 			}
@@ -53,7 +53,7 @@ public class TurmaDAO {
 		}
 	}
 	
-	public void insert(Turma t) {
+	public void insert(Turma turma) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
@@ -62,12 +62,12 @@ public class TurmaDAO {
 					"insert into TB_TURMA (descricao, inicio_aulas) "
 					+ "values (?, ?)",
 					Statement.RETURN_GENERATED_KEYS);
-			ps.setString(1, t.getDescricao());
-			ps.setDate(2, new java.sql.Date(t.getInicioAulas().getTime()));
+			ps.setString(1, turma.getDescricao());
+			ps.setDate(2, new java.sql.Date(turma.getInicioAulas().getTime()));
 			ps.executeUpdate();
 			ResultSet key = ps.getGeneratedKeys();
 			if (key.next()) {
-				t.setId(key.getInt(1));
+				turma.setId(key.getInt(1));
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -83,7 +83,7 @@ public class TurmaDAO {
 		}
 	}
 	
-	public void update(Turma t) {
+	public void update(Turma turma) {
 		Connection con = null;
 		PreparedStatement ps = null;
 		try {
@@ -92,9 +92,9 @@ public class TurmaDAO {
 					"update TB_TURMA "
 					+ "set descricao = ?, inicio_aulas = ? "
 					+ "where id = ?");
-			ps.setString(1, t.getDescricao());
-			ps.setDate(2, new java.sql.Date(t.getInicioAulas().getTime()));
-			ps.setInt(3, t.getId());
+			ps.setString(1, turma.getDescricao());
+			ps.setDate(2, new java.sql.Date(turma.getInicioAulas().getTime()));
+			ps.setInt(3, turma.getId());
 			ps.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -143,11 +143,11 @@ public class TurmaDAO {
 			ResultSet rs = st.executeQuery(
 					"select * from TB_TURMA");
 			while (rs.next()) {
-				Turma t = new Turma();
-				t.setId(rs.getInt("id"));
-				t.setDescricao(rs.getString("descricao"));
-				t.setInicioAulas(rs.getDate("inicio_aulas"));
-				res.add(t);
+				Turma turma = new Turma();
+				turma.setId(rs.getInt("id"));
+				turma.setDescricao(rs.getString("descricao"));
+				turma.setInicioAulas(rs.getDate("inicio_aulas"));
+				res.add(turma);
 			}
 			return res;
 		} catch (SQLException e) {

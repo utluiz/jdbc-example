@@ -8,9 +8,6 @@ public class Turma {
 	private String descricao;
 	private Date inicioAulas;
 	
-	public Turma() {
-	}
-
 	public Integer getId() {
 		return id;
 	}
